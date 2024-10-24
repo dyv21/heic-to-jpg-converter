@@ -1,14 +1,13 @@
 import React from 'react';
 
-type ButtonPropsType = {
-  className?: string;
-}
+type ButtonPropsType = React.ButtonHTMLAttributes<HTMLButtonElement> &
+  {
+    label: string
+  }
 
-export const Button = ({className}:ButtonPropsType) => {
+export const Button = ({label, className}: ButtonPropsType) => {
   return (
-    <>
-      <button className={`text-white rounded-lg px-5 py-1 hover:bg-gray/50 ${className}`}>Help</button>
-    </>
+    <button className={`rounded-lg px-5 py-1 ${className}`}>{label}</button>
   );
 };
 

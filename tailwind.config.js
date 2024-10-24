@@ -7,7 +7,6 @@ module.exports = {
        'bg--primary': '#F7FAFC',
         'btn--primary': '#1A80E5',
         'btn--secondary': '#E8EDF2',
-
       }
     },
   },

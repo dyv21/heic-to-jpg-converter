@@ -1,11 +1,12 @@
 import React from 'react';
-import {Header} from "../common/components";
+import {Header, Main} from "../common/components";
+
 
 function App() {
   return (
-    <div  className="bg-bg--primary w-screen h-screen">
-      <Header/>
-      <main></main>
+    <div  className="bg-bg--primary max-w-5xl mx-auto">
+      <Header />
+      <Main/>
       <footer></footer>
     </div>
   );
