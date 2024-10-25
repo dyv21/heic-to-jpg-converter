@@ -1,30 +1,28 @@
 import {Button} from "../../ui"
-import React, {useRef} from "react"
+import React, {useCallback, useRef} from "react"
+import {useDropzone} from "react-dropzone"
+
+type AcceptedFilesType = File[];
+
 
 export const DropZone = () => {
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-  const handleDropzoneClick = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.click();
-    }
-  };
+  const onDrop = useCallback((acceptedFiles:AcceptedFilesType) => {
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = event.target.files;
-    // Обработка выбранных файлов
-    console.log(files);
-  };
+    console.log(acceptedFiles);
+  }, []);
+
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    multiple: true
+  });
+
 
 
   return (
-    <div id="drop_zone" className="flex justify-center items-center h-96 border-2  border-dashed rounded-xl  mb-3"
-         onClick={handleDropzoneClick}
-      // onDrop="dropHandler(event);"
-      // onDragOver="dragOverHandler(event);"
+    <div {...getRootProps()}  id="drop_zone" className="flex justify-center items-center h-96 border-2  border-dashed rounded-xl  mb-3"
     >
       <div className="text-center">
-
         <h2 className='text-xl'>Drag & Drop HEIC Files</h2>
         <p className='mb-32'>or click here to browse</p>
         <input
@@ -32,8 +30,7 @@ export const DropZone = () => {
           id='file-input'
           className='hidden'
           accept=".image/heic"
-          ref={fileInputRef}
-          onChange={handleFileChange}
+          {...getInputProps()}
         />
 
         <Button label={'Browse'} className={"bg-btn--secondary text-black hover:opacity-50"}/>
