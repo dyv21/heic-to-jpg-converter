@@ -79,8 +79,7 @@ export const DropZone = () => {
           </div>
         </div>
       )}
-`
-      {loadedImg.length != 0 && (
+      {loadedImg.length > 0 && (
         <div>
           <div className="flex items-center bg-btn--secondary rounded-xl p-3 mb-3">
             {loadedImg.map((src, index) => (
