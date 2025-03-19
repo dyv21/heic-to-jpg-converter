@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/heicformatter/static/css/main.c76cd246.css",
-    "main.js": "/heicformatter/static/js/main.70f52501.js",
-    "static/js/453.c9ac3f6a.chunk.js": "/heicformatter/static/js/453.c9ac3f6a.chunk.js",
-    "index.html": "/heicformatter/index.html",
-    "main.c76cd246.css.map": "/heicformatter/static/css/main.c76cd246.css.map",
-    "main.70f52501.js.map": "/heicformatter/static/js/main.70f52501.js.map",
-    "453.c9ac3f6a.chunk.js.map": "/heicformatter/static/js/453.c9ac3f6a.chunk.js.map"
+    "main.css": "/heic-to-jpg-converter/static/css/main.c76cd246.css",
+    "main.js": "/heic-to-jpg-converter/static/js/main.398c65a0.js",
+    "static/js/453.3c658d03.chunk.js": "/heic-to-jpg-converter/static/js/453.3c658d03.chunk.js",
+    "index.html": "/heic-to-jpg-converter/index.html",
+    "main.c76cd246.css.map": "/heic-to-jpg-converter/static/css/main.c76cd246.css.map",
+    "main.398c65a0.js.map": "/heic-to-jpg-converter/static/js/main.398c65a0.js.map",
+    "453.3c658d03.chunk.js.map": "/heic-to-jpg-converter/static/js/453.3c658d03.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c76cd246.css",
-    "static/js/main.70f52501.js"
+    "static/js/main.398c65a0.js"
   ]
 }
