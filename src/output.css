@@ -805,3 +805,15 @@ video {
 .hover\:opacity-80:hover {
   opacity: 0.8;
 }
+
+.fixed {
+  position: fixed;
+}
+
+.inset-0 {
+  inset: 0px;
+}
+
+.bg-gray-500\/75 {
+  background-color: rgb(107 114 128 / 0.75);
+}

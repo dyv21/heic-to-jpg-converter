@@ -1,10 +1,10 @@
 import {Button} from "../../ui"
-import React, {useCallback, useEffect, useMemo, useState} from "react"
+import React, {useCallback, useMemo, useState} from "react"
 import {useDropzone} from "react-dropzone"
 // @ts-ignore
 import libheif from 'libheif-js/wasm-bundle';
-import {AcceptedFilesType, useHeicToJpegConverter} from "../../ui/hooks/useHeicToJpegConverter"
-
+import {Loader} from "../../ui/Loader/Loader"
+import {AcceptedFilesType, useHeicToJpegConverter} from "../../hooks/useHeicToJpegConverter"
 
 
 export const DropZone = () => {
@@ -25,7 +25,7 @@ export const DropZone = () => {
   }, []);
 
 
-  const { convertHeicToJpeg, conversionProgress, isConverting} = useHeicToJpegConverter(decoder)
+  const {convertHeicToJpeg, isConverting} = useHeicToJpegConverter(decoder)
 
 
   const onDrop = useCallback(async (acceptedFiles: AcceptedFilesType) => {
@@ -43,9 +43,10 @@ export const DropZone = () => {
   })
 
   if (isLoading) {
-    return <div>Loading converter...</div>
+    return <Loader />
   }
 
+  // @ts-ignore
   return (
     <>
       <div {...getRootProps()} id="drop_zone"
@@ -61,32 +62,19 @@ export const DropZone = () => {
             accept=".image/heic"
             {...getInputProps()}
           />
-          <Button label={'Browse'} className={"bg-btn--secondary text-black hover:opacity-50"}/>
+          <Button label={'Browse'} className={"bg-btn--primary text-white hover:opacity-50"}/>
         </div>
       </div>
 
-      {isConverting && (
-        <div className="mb-4">
-          <div className="flex justify-between mb-2">
-            <span>Converting images in progress...</span>
-            <span>{conversionProgress.current} of {conversionProgress.total}</span>
-          </div>
-          <div className="w-full h-2 bg-gray-200 rounded ">
-            <div
-              className="h-full bg-blue-500 rounded transition-all duration-300 "
-              style={{width: `${conversionProgress.percentage}%`}}
-            />
-          </div>
-        </div>
-      )}
+      {isConverting &&  <Loader />}
       {loadedImg.length > 0 && (
         <div>
           <div className="flex items-center bg-btn--secondary rounded-xl p-3 mb-3">
             {loadedImg.map((src, index) => (
               <div key={index} className="mr-3">
                 <a download={`picture-${index}.jpg`} href={src}>
-                  <img src={src} className="rounded-lg"
-                       alt={`Preview ${index}`} width={100} height={100}/></a>
+                  <img src={src} className="rounded-lg" alt={`Preview ${index}`} width={100} height={100}/>
+                </a>
               </div>
             ))}
           </div>

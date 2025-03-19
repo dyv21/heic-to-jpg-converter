@@ -2,29 +2,13 @@ import {useState} from "react"
 
 export type AcceptedFilesType = File[];
 
-type ConversionProgress = {
-  total: number;
-  current: number;
-  percentage: number;
-}
-
 export const useHeicToJpegConverter = (decoder:any) => {
   const [isConverting, setIsConverting] = useState(false)
-  const [convertionProgress, setConvertionProgress] = useState<ConversionProgress>({
-    total: 0,
-    current: 0,
-    percentage: 43
-  })
 
   const convertHeicToJpeg = async (files: AcceptedFilesType) => {
     const convertedImages: string[] = []
 
     setIsConverting(true)
-    setConvertionProgress({
-      total: files.length,
-      current: 0,
-      percentage: 0
-    })
 
     // @ts-ignore
     for (const [index, file] of files.entries()) {
@@ -67,15 +51,6 @@ export const useHeicToJpegConverter = (decoder:any) => {
           const previewUrl = canvas.toDataURL('image/jpeg', 0.5)
           convertedImages.push(previewUrl)
 
-
-          const current = index + 1
-          const percentage = Math.round((current / files.length) * 100)
-          setConvertionProgress({
-            total: files.length,
-            current,
-            percentage
-          })
-
         } catch (error) {
           console.error('Error converting HEIC:', error)
         }
@@ -87,5 +62,5 @@ export const useHeicToJpegConverter = (decoder:any) => {
   }
 
 
-  return  { convertHeicToJpeg, conversionProgress: convertionProgress, isConverting}
+  return  { convertHeicToJpeg, isConverting}
 }
