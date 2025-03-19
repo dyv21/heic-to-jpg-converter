@@ -71,7 +71,7 @@ export const DropZone = () => {
           <div className="flex items-center bg-btn--secondary rounded-xl p-3 mb-3">
             {loadedImg.map((src, index) => (
               <div key={index} className="mr-3">
-                <a download={`picture-${index}.jpg`} href={src}>
+                <a href={src} download={`picture-${index}.jpg`} >
                   <img src={src} className="rounded-lg" alt={`Preview ${index}`} width={100} height={100}/>
                 </a>
               </div>
