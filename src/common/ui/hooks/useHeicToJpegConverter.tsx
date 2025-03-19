@@ -19,8 +19,6 @@ export const useHeicToJpegConverter = (decoder:any) => {
 
   const convertHeicToJpeg = async (files: AcceptedFilesType) => {
     const convertedImages: string[] = []
-    const downloadUrls: string[] = []
-
 
     setIsConverting(true)
     setConversionProgress({
@@ -70,14 +68,6 @@ export const useHeicToJpegConverter = (decoder:any) => {
           const previewUrl = canvas.toDataURL('image/jpeg', 0.5)
           convertedImages.push(previewUrl)
 
-          const jpegBlob = await new Promise<Blob>((resolve) => {
-            canvas.toBlob((blob) => {
-              if (blob) resolve(blob)
-            }, 'image/jpeg', 0.9)
-          })
-
-          const downloadUrl = URL.createObjectURL(jpegBlob)
-          downloadUrls.push(downloadUrl)
 
           const current = index + 1
           const percentage = Math.round((current / files.length) * 100)
@@ -94,7 +84,7 @@ export const useHeicToJpegConverter = (decoder:any) => {
     }
 
     setIsConverting(false)
-    return {convertedImages, downloadUrls}
+    return {convertedImages}
   }
 
 
