@@ -1,0 +1,6 @@
+body {
+  --tw-bg-opacity: 1;
+  background-color: rgb(247 250 252);
+  min-width: 100vh;
+  min-height: 100vh;
+}
