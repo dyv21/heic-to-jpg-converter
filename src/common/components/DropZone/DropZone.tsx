@@ -2,7 +2,8 @@ import {Button} from "../../ui"
 import React, {useCallback, useEffect, useState} from "react"
 import {useDropzone} from "react-dropzone"
 // @ts-ignore
-import libheif from 'libheif-js'
+import libheif from 'libheif-js/wasm-bundle';
+
 
 type AcceptedFilesType = File[];
 
@@ -170,7 +171,7 @@ export const DropZone = () => {
           </div>
         </div>
       )}
-
+`
       {loadedImg.length != 0 && (
         <div>
           <div className="flex items-center bg-btn--secondary rounded-xl p-3 mb-3">
