@@ -1,5 +1,5 @@
 import {Button} from "../../ui"
-import React, {useCallback, useEffect, useState} from "react"
+import React, {useCallback, useEffect, useMemo, useState} from "react"
 import {useDropzone} from "react-dropzone"
 // @ts-ignore
 import libheif from 'libheif-js/wasm-bundle';
@@ -8,28 +8,25 @@ import {AcceptedFilesType, useHeicToJpegConverter} from "../../ui/hooks/useHeicT
 
 
 export const DropZone = () => {
-  const [loadedImg, setLoadedImg] = useState<string[]>([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [decoder, setDecoder] = useState<any>(null)
+  const [loadedImg, setLoadedImg] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
+  const decoder = useMemo(() => {
+    try {
+      const heifDecoder = new libheif.HeifDecoder();
+      console.log('libheif initialized successfully');
+      setIsLoading(false);
+      return heifDecoder;
+    } catch (err) {
+      console.error('Failed to initialize libheif:', err);
+      setIsLoading(false);
+      return null;
+    }
+  }, []);
 
 
   const { convertHeicToJpeg, conversionProgress, isConverting} = useHeicToJpegConverter(decoder)
 
-  useEffect(() => {
-    const initializeDecoder = async () => {
-      try {
-        const heifDecoder = new libheif.HeifDecoder()
-        setDecoder(heifDecoder)
-        setIsLoading(false)
-        console.log('libheif initialized successfully')
-      } catch (err) {
-        console.error('Failed to initialize libheif:', err)
-        setIsLoading(false)
-      }
-    }
-    initializeDecoder()
-  }, [])
 
   const onDrop = useCallback(async (acceptedFiles: AcceptedFilesType) => {
     const {convertedImages} = await convertHeicToJpeg(acceptedFiles)
