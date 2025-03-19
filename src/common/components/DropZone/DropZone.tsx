@@ -46,11 +46,10 @@ export const DropZone = () => {
     return <Loader />
   }
 
-  // @ts-ignore
   return (
     <>
       <div {...getRootProps()} id="drop_zone"
-           className="flex justify-center items-center h-96 border-2 border-dashed rounded-xl mb-3"
+           className="flex justify-center items-center h-96 border-2 border-dashed rounded-xl mb-3 cursor-pointer"
       >
         <div className="text-center">
           <h2 className='text-xl'>Drag & Drop HEIC Files</h2>
