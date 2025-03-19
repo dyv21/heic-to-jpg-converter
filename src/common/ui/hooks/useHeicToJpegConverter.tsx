@@ -8,10 +8,9 @@ type ConversionProgress = {
   percentage: number;
 }
 
-
 export const useHeicToJpegConverter = (decoder:any) => {
   const [isConverting, setIsConverting] = useState(false)
-  const [conversionProgress, setConversionProgress] = useState<ConversionProgress>({
+  const [convertionProgress, setConvertionProgress] = useState<ConversionProgress>({
     total: 0,
     current: 0,
     percentage: 43
@@ -21,10 +20,10 @@ export const useHeicToJpegConverter = (decoder:any) => {
     const convertedImages: string[] = []
 
     setIsConverting(true)
-    setConversionProgress({
+    setConvertionProgress({
       total: files.length,
       current: 0,
-      percentage: 43
+      percentage: 0
     })
 
     // @ts-ignore
@@ -71,7 +70,7 @@ export const useHeicToJpegConverter = (decoder:any) => {
 
           const current = index + 1
           const percentage = Math.round((current / files.length) * 100)
-          setConversionProgress({
+          setConvertionProgress({
             total: files.length,
             current,
             percentage
@@ -88,5 +87,5 @@ export const useHeicToJpegConverter = (decoder:any) => {
   }
 
 
-  return  { convertHeicToJpeg, conversionProgress, isConverting}
+  return  { convertHeicToJpeg, conversionProgress: convertionProgress, isConverting}
 }
