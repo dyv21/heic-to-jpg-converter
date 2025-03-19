@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/heicformatter/static/css/main.cdd497b1.css",
+    "main.css": "/heicformatter/static/css/main.c76cd246.css",
     "main.js": "/heicformatter/static/js/main.70f52501.js",
     "static/js/453.c9ac3f6a.chunk.js": "/heicformatter/static/js/453.c9ac3f6a.chunk.js",
     "index.html": "/heicformatter/index.html",
-    "main.cdd497b1.css.map": "/heicformatter/static/css/main.cdd497b1.css.map",
+    "main.c76cd246.css.map": "/heicformatter/static/css/main.c76cd246.css.map",
     "main.70f52501.js.map": "/heicformatter/static/js/main.70f52501.js.map",
     "453.c9ac3f6a.chunk.js.map": "/heicformatter/static/js/453.c9ac3f6a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.cdd497b1.css",
+    "static/css/main.c76cd246.css",
     "static/js/main.70f52501.js"
   ]
 }
