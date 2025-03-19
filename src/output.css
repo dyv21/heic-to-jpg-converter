@@ -814,8 +814,8 @@ video {
   inset: 0px;
 }
 
-.bg-gray-500\/75 {
-  background-color: rgb(107 114 128 / 0.75);
+.bg-gray-500\/50 {
+  background-color: rgb(107 114 128 / 0.5);
 }
 
 .cursor-pointer {

@@ -1,6 +1,6 @@
-import React from 'react';
+import {ButtonHTMLAttributes} from "react"
 
-type ButtonPropsType = React.ButtonHTMLAttributes<HTMLButtonElement> &
+type ButtonPropsType = ButtonHTMLAttributes<HTMLButtonElement> &
   {
     label: string
   }

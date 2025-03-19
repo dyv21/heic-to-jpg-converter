@@ -1,5 +1,5 @@
 import {Button} from "../../ui"
-import React, {useCallback, useMemo, useState} from "react"
+import  {useCallback, useMemo, useState} from "react"
 import {useDropzone} from "react-dropzone"
 // @ts-ignore
 import libheif from 'libheif-js/wasm-bundle';
