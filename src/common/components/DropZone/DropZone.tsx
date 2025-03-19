@@ -1,6 +1,6 @@
-import { Button } from "../../ui"
-import React, { useCallback, useEffect, useState } from "react"
-import { useDropzone } from "react-dropzone"
+import {Button} from "../../ui"
+import React, {useCallback, useEffect, useState} from "react"
+import {useDropzone} from "react-dropzone"
 // @ts-ignore
 import libheif from 'libheif-js'
 
@@ -20,7 +20,7 @@ export const DropZone = () => {
   const [conversionProgress, setConversionProgress] = useState<ConversionProgress>({
     total: 0,
     current: 0,
-    percentage: 0
+    percentage: 43
   })
   const [isConverting, setIsConverting] = useState(false)
 
@@ -47,7 +47,7 @@ export const DropZone = () => {
     setConversionProgress({
       total: files.length,
       current: 0,
-      percentage: 0
+      percentage: 43
     })
 
     // @ts-ignore
@@ -88,11 +88,9 @@ export const DropZone = () => {
 
           ctx.putImageData(imageData, 0, 0)
 
-          // Create preview URL
           const previewUrl = canvas.toDataURL('image/jpeg', 0.5)
           convertedImages.push(previewUrl)
 
-          // Create download blob with better quality
           const jpegBlob = await new Promise<Blob>((resolve) => {
             canvas.toBlob((blob) => {
               if (blob) resolve(blob)
@@ -102,7 +100,6 @@ export const DropZone = () => {
           const downloadUrl = URL.createObjectURL(jpegBlob)
           downloadUrls.push(downloadUrl)
 
-          // Update progress
           const current = index + 1
           const percentage = Math.round((current / files.length) * 100)
           setConversionProgress({
@@ -119,31 +116,16 @@ export const DropZone = () => {
 
     setIsConverting(false)
     setDisable(false)
-    return { convertedImages, downloadUrls }
+    return {convertedImages, downloadUrls}
   }
 
   const onDrop = useCallback(async (acceptedFiles: AcceptedFilesType) => {
-    const { convertedImages } = await convertToJpeg(acceptedFiles)
+    const {convertedImages} = await convertToJpeg(acceptedFiles)
     setLoadedImg(convertedImages)
   }, [decoder])
 
-  const handleDownloadAll = async () => {
-    const { downloadUrls } = await convertToJpeg(loadedImg.map(url =>
-      new File([url], 'image.heic', { type: 'image/heic' })
-    ))
 
-    downloadUrls.forEach((url, index) => {
-      const link = document.createElement('a')
-      link.href = url
-      link.download = `converted_${index + 1}.jpg`
-      document.body.appendChild(link)
-      link.click()
-      document.body.removeChild(link)
-      URL.revokeObjectURL(url)
-    })
-  }
-
-  const { getRootProps, getInputProps } = useDropzone({
+  const {getRootProps, getInputProps} = useDropzone({
     onDrop,
     multiple: true,
     accept: {
@@ -170,7 +152,7 @@ export const DropZone = () => {
             accept=".image/heic"
             {...getInputProps()}
           />
-          <Button label={'Browse'} className={"bg-btn--secondary text-black hover:opacity-50"} />
+          <Button label={'Browse'} className={"bg-btn--secondary text-black hover:opacity-50"}/>
         </div>
       </div>
 
@@ -180,34 +162,29 @@ export const DropZone = () => {
             <span>Converting images in progress...</span>
             <span>{conversionProgress.current} of {conversionProgress.total}</span>
           </div>
-          <div className="w-full h-2 bg-gray-200 rounded">
+          <div className="w-full h-2 bg-gray-200 rounded ">
             <div
-              className="h-full bg-blue-500 rounded transition-all duration-300"
-              style={{ width: `${conversionProgress.percentage}%` }}
+              className="h-full bg-blue-500 rounded transition-all duration-300 "
+              style={{width: `${conversionProgress.percentage}%`}}
             />
           </div>
         </div>
       )}
 
       {loadedImg.length != 0 && (
-        <div className="flex items-center bg-btn--secondary rounded-xl p-3 mb-3">
-          {loadedImg.map((src, index) => (
-            <div key={index} className="mr-3">
-              <img src={src} className="rounded-lg" alt={`Preview ${index}`} width={100} height={100} />
-            </div>
-          ))}
+        <div>
+          <div className="flex items-center bg-btn--secondary rounded-xl p-3 mb-3">
+            {loadedImg.map((src, index) => (
+              <div key={index} className="mr-3">
+                <a download={`picture-${index}.jpg`} href={src}>
+                  <img src={src} className="rounded-lg"
+                       alt={`Preview ${index}`} width={100} height={100}/></a>
+              </div>
+            ))}
+          </div>
+          <p>Click on preview to download</p>
         </div>
       )}
-
-      <div>
-        <p className='mb-5'>Download yours converted JPEG files here</p>
-        <Button
-          disabled={isDisable}
-          label={'Download All'}
-          onClick={handleDownloadAll}
-          className={isDisable ? 'bg-btn--secondary text-black cursor-default' : 'text-white bg-btn--primary'}
-        />
-      </div>
     </>
   )
 }
