@@ -14,7 +14,7 @@ Follow these steps to get the project up and running on your local machine:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/heic-to-jpeg-formatter.git
+   git clone https://git@github.com:dyv21/heic-to-jpg-converter.git
    cd heic-to-jpeg-formatter
 2. Install dependencies:
     ``` bash
