@@ -1,12 +1,12 @@
 # HEIC to JPG Converter
 
-A simple web tool to convert HEIC images to JPEG format. This project is built using React, TypeScript, npm, Webpack, and the `libheif-js` library for decoding HEIC files.
+A simple web tool to convert HEIC images to JPG format. This project is built using React, TypeScript, npm, Webpack, and the `libheif-js` library for decoding HEIC files.
 
 ## Features
 
-- **HEIC to JPEG Conversion:** Upload HEIC images and convert them to JPEG format.
+- **HEIC to JPG Conversion:** Upload HEIC images and convert them to JPG format.
 - **Responsive UI:** Built with React and TypeScript for a smooth and responsive user experience.
-- **HEIC Decoding:** Uses `libheif-js` to decode HEIC images and convert them to JPEG.
+- **HEIC Decoding:** Uses `libheif-js` to decode HEIC images and convert them to JPG.
 
 ## Installation
 
@@ -24,8 +24,8 @@ Follow these steps to get the project up and running on your local machine:
     npm start
 ## Usage
 1.	Upload a HEIC image by clicking the “Upload” button.
-2.  The image will be automatically converted to JPEG.
-3.	Download the JPEG image once the conversion is complete.
+2.  The image will be automatically converted to JPG.
+3.	Download the JPG image once the conversion is complete.
 
 ## Technologies Used
 -	**React**: For building the UI.
